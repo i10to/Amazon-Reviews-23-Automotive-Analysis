@@ -64,7 +64,10 @@ Found while working with the files. Each one matters for cleaning.
 3. **Fake blanks.** Some empty values are stored as `"None"`, `""` or `[]` instead of a true blank. pandas `info()` does not count these as missing.
 4. **Two undocumented columns in the meta file: `subtitle` and `author`.** These are fields from Amazon **book** pages (for example the book format and its author). For normal car parts they are empty. Where they are filled, the "product" is probably a book or repair manual sold in the Automotive category. *This is an assumption still to be checked in notebook 02 by counting the filled rows.*
 5. **Lists and dictionaries inside one cell.** `features`, `description`, `categories`, `images` and `details` each pack several values into one cell. They need flattening before analysis.
-6. **Some reviews have no matching product** in the meta file. How many is checked in notebook 02.
+6. **Some reviews have no matching product** in the meta file. How many is checked in notebook 02, part 2.
+7. **Not every product in the Automotive file is automotive.** `main_category` has 38 categories plus blanks. About 85.8% of products are Automotive; the rest include Industrial & Scientific, Amazon Fashion and Sports & Outdoors.
+8. **`store` uses `"Unknown"`** as a fake blank.
+9. **Web codes in review text**, like `&#34;` (which means `"`). They need converting back to normal characters before text analysis.
 
 ## Why this dataset fits the project brief
 

@@ -22,6 +22,7 @@ New to this project? Read the files in this order. Each one is short.
 | 4 | [docs/04-colab-setup.md](docs/04-colab-setup.md) | How to run the notebooks in Google Colab without crashing |
 | 5 | [notebooks/](notebooks/) | The actual code, one notebook per stage |
 | Any time | [docs/05-glossary.md](docs/05-glossary.md) | Plain-word meanings of the technical terms used here |
+| Any time | [docs/06-decisions.md](docs/06-decisions.md) | Every keep/drop choice and the reason behind it |
 | Any time | [docs/progress-log.md](docs/progress-log.md) | What has been done so far, and what is next |
 
 ---
@@ -37,10 +38,12 @@ amazon-reviews-23-automotive-analysis/
 │   ├── 03-data-dictionary.md
 │   ├── 04-colab-setup.md
 │   ├── 05-glossary.md
+│   ├── 06-decisions.md
 │   └── progress-log.md
 ├── notebooks/                 <- the code, run in Google Colab, in number order
 │   ├── README.md
-│   └── 01_download_and_check_structure.ipynb
+│   ├── 01_download_and_check_structure.ipynb
+│   └── 02_explore_part1.ipynb
 ├── data/                      <- data is NOT stored here (too big); see data/README.md
 │   └── README.md
 └── .gitignore                 <- tells Git to never upload the big data files
@@ -53,7 +56,8 @@ amazon-reviews-23-automotive-analysis/
 | Stage | Notebook | Status |
 |---|---|---|
 | 1. Download the data and check its structure | `01_download_and_check_structure.ipynb` | Done |
-| 2. Explore the data (blanks, duplicates, odd values) | `02_explore.ipynb` | Next |
+| 2. Explore the data, part 1 (tables, counts, first decisions) | `02_explore_part1.ipynb` | Done |
+| 2. Explore the data, part 2 (apply drops and filter, join checks, review timing) | `02_explore_part2.ipynb` | Next |
 | 3. Clean the data | `03_clean.ipynb` | Planned |
 | 4. Add a sentiment column from review text | `04_sentiment.ipynb` | Planned |
 | 5. Join reviews to products and build features | `05_features.ipynb` | Planned |
