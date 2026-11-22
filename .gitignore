@@ -1,0 +1,20 @@
+# Big data files: never upload these (too big for GitHub, and they can be downloaded again)
+*.jsonl
+*.jsonl.gz
+*.jsonl.gz.*
+*.gz
+*.parquet
+*.csv
+
+# Anything put inside data/ except its README
+data/*
+!data/README.md
+
+# Notebook and Python clutter
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+
+# System files
+.DS_Store
+Thumbs.db
