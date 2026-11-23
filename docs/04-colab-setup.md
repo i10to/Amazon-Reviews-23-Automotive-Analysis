@@ -36,6 +36,10 @@ The notebooks also cap DuckDB at **6 GB** of RAM with `SET memory_limit = '6GB'`
 
 > DuckDB (max 6 GB) + your pandas tables + about 1 GB for Colab itself must stay under 12.7 GB.
 
+## Where the DuckDB tables live
+
+`duckdb.sql(...)` uses DuckDB's default **in-memory** database, so the tables built in notebook 02 (`review`, `meta`, `review_meta`) sit in RAM and disappear when the session ends. A future option is a DuckDB database file (`duckdb.connect("amazon.duckdb")`), which keeps tables on disk instead; it still lives on Colab's disk and gets wiped at session end unless copied to Google Drive.
+
 ## Things that get wiped
 
 When a Colab session ends or times out, **everything on its disk is deleted**, including the downloaded files.
@@ -51,4 +55,6 @@ When a Colab session ends or times out, **everything on its disk is deleted**, i
 | `ParserException: syntax error at end of input` in a DuckDB query | The file-name variable holds the wrong thing, e.g. `review_file = !wget ...` saves wget's messages, not the file name | Download with `!wget` on its own line, then type the file name into the variable yourself |
 | A file named `Automotive.jsonl.gz.1` appears | `wget` was run twice; it doesn't overwrite, it saves a second copy | Delete the copy with `!rm Automotive.jsonl.gz.1` |
 | A downloaded file is only a few KB | The download failed (often a changed link) | Check the current link on the official page (see [02-dataset.md](02-dataset.md)) |
+| `SyntaxError` on a line starting with `duckdb -c ...` | That is a terminal command for the DuckDB command-line tool, not Python; it can't run in a Python cell | Delete the line. To show more rows from Python, use `.df()` with a `LIMIT` instead |
+| Tables `review`, `meta` or `review_meta` "do not exist" | They were in-memory tables and the session restarted | Re-run notebooks 01 and 02 |
 | A DuckDB scan takes several minutes | Normal: it reads the whole zipped file | Wait. Slow is fine; a crash is not. |

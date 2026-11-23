@@ -13,11 +13,13 @@ This project uses one category: **Automotive**.
 
 ## Size of the Automotive category
 
-From the official statistics table:
+From the official statistics table (rounded):
 
 | Users (reviewers) | Items (products) | Ratings (reviews) |
 |---|---|---|
 | 8.0 million | 2.0 million | 20.0 million |
+
+Counted in notebook 02: **19,955,450 reviews** and **2,003,129 products** (2,003,039 of which have at least one review).
 
 That is far too big to load into memory at once. See [04-colab-setup.md](04-colab-setup.md) for how the project handles it.
 
@@ -62,12 +64,13 @@ Found while working with the files. Each one matters for cleaning.
 1. **`timestamp` is in milliseconds**, not seconds. Divide by 1000 before turning it into a date, or every date will be wrong.
 2. **`price` is often missing.** The docs list it as a number, but many products have no price.
 3. **Fake blanks.** Some empty values are stored as `"None"`, `""` or `[]` instead of a true blank. pandas `info()` does not count these as missing.
-4. **Two undocumented columns in the meta file: `subtitle` and `author`.** These are fields from Amazon **book** pages (for example the book format and its author). For normal car parts they are empty. Where they are filled, the "product" is probably a book or repair manual sold in the Automotive category. *This is an assumption still to be checked in notebook 02 by counting the filled rows.*
+4. **Two undocumented columns in the meta file: `subtitle` and `author`.** These are fields from Amazon **book** pages (for example the book format and its author). For normal car parts they are empty. Where they are filled, the "product" is probably a book or repair manual sold in the Automotive category. Both columns were dropped in notebook 02 without counting the filled rows, so a small number of books or manuals may remain.
 5. **Lists and dictionaries inside one cell.** `features`, `description`, `categories`, `images` and `details` each pack several values into one cell. They need flattening before analysis.
-6. **Some reviews have no matching product** in the meta file. How many is checked in notebook 02, part 2.
-7. **Not every product in the Automotive file is automotive.** `main_category` has 38 categories plus blanks. About 85.8% of products are Automotive; the rest include Industrial & Scientific, Amazon Fashion and Sports & Outdoors.
+6. **Some reviews may have no matching product** in the meta file. They are part of the 185,376 joined rows with no main category (notebook 02); an exact count is still open.
+7. **Not every product in the Automotive file is automotive.** `main_category` has 38 categories plus blanks. About 85.8% of products (1,717,837) and about 84.5% of reviews (16,857,383) are Automotive; the rest include Industrial & Scientific, AMAZON FASHION and Sports & Outdoors.
 8. **`store` uses `"Unknown"`** as a fake blank.
 9. **Web codes in review text**, like `&#34;` (which means `"`). They need converting back to normal characters before text analysis.
+10. **The meta file has lines DuckDB can't read by default.** It was loaded with `ignore_errors = true`, which skips unreadable lines silently. The loaded product count is 2,003,129.
 
 ## Why this dataset fits the project brief
 

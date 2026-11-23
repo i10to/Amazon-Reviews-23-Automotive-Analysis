@@ -16,11 +16,15 @@ Plain-word meanings of the terms used in this project, in A to Z order.
 | **Fake blank** | A value that means "missing" but isn't stored as a true blank, e.g. the text `"None"`, an empty text `""` or an empty list `[]`. |
 | **Feature** | One input the model uses, e.g. price or share of negative reviews. |
 | **Imbalanced classes** | When one answer is much more common than the others, e.g. far more good products than bad ones. |
-| **JSON Lines (`.jsonl`)** | A text file where each line is one separate record. |
+| **Inner join** | A join that keeps only rows with a match in both tables. Rows with no match disappear silently. |
 | **Join** | Combining two tables by matching a shared column, here `parent_asin`. |
+| **JSON Lines (`.jsonl`)** | A text file where each line is one separate record. |
+| **Left join** | A join that keeps every row of the first (left) table; where the second table has no match, its columns are left empty (NULL). Used in notebook 02. |
+| **NULL** | A true blank: no value at all. In SQL, comparing anything with NULL gives "unknown", so `!= 'Automotive'` does not catch NULL rows. |
 | **Parquet** | A compact, fast file format for tables. Good for saving samples to Google Drive. |
 | **RAM** | A computer's short-term memory, where data sits while you work on it. Colab's free tier has about 12.7 GB. |
 | **Sample** | A smaller random part of the data, used when the whole thing is too big. |
+| **Semi join** | A join used as a filter: keeps rows of the first table that have a match in the second, without adding any of its columns. |
 | **Sentiment** | Whether a piece of text sounds positive, neutral or negative. |
 | **Target** | The answer the model learns to predict, here whether a product ends up poorly rated. |
 | **Unix time (milliseconds)** | Time counted as the number of milliseconds since 1 January 1970. The review `timestamp` uses this. |
